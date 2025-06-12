@@ -1,0 +1,6 @@
+pyproject.toml
+image_process_homework.egg-info/PKG-INFO
+image_process_homework.egg-info/SOURCES.txt
+image_process_homework.egg-info/dependency_links.txt
+image_process_homework.egg-info/requires.txt
+image_process_homework.egg-info/top_level.txt
