@@ -15,11 +15,11 @@ OUTPUT_DIR = os.path.join(DATA_DIR, 'output')
 # 输入图像路径
 BEAUTY_IMAGE_PATH = os.path.join(INPUT_DIR, 'beauty.jpg')
 APPLE_IMAGE_PATH = os.path.join(INPUT_DIR, 'apple.jpg')
-PEAR_IMAGE_PATH = os.path.join(INPUT_DIR, 'pear.jpg')
+ORANGE_IMAGE_PATH = os.path.join(INPUT_DIR, 'orange.jpg')
 
 # 输出图像路径
 BEAUTY_OUTPUT_PATH = os.path.join(OUTPUT_DIR, 'beauty_enhanced.jpg')
-FUSION_OUTPUT_PATH = os.path.join(OUTPUT_DIR, 'apple_pear_fusion.jpg')
+FUSION_OUTPUT_PATH = os.path.join(OUTPUT_DIR, 'apple_orange_fusion.jpg')
 
 # 美化参数
 BEAUTY_PARAMS = {
