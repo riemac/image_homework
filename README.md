@@ -12,6 +12,6 @@
 
 # 实验结果
 ## 美女图像美化
-![alt text](image-1.png)
-## 苹果橘子图像融合
 ![alt text](image.png)
+## 苹果橘子图像融合
+![alt text](image-1.png)
