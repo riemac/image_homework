@@ -14,18 +14,18 @@ def normalize_color(src_img, ref_img):
     """
     将src_img的亮度和色调归一化到ref_img
     """
-    src_yuv = cv2.cvtColor(src_img, cv2.COLOR_RGB2YUV)
-    ref_yuv = cv2.cvtColor(ref_img, cv2.COLOR_RGB2YUV)
+    src_YCrCb = cv2.cvtColor(src_img, cv2.COLOR_RGB2YCrCb)
+    ref_YCrCb = cv2.cvtColor(ref_img, cv2.COLOR_RGB2YCrCb)
     # 只调整Y通道
-    src_y, src_u, src_v = cv2.split(src_yuv)
-    ref_y, _, _ = cv2.split(ref_yuv)
+    src_y, src_u, src_v = cv2.split(src_YCrCb)
+    ref_y, _, _ = cv2.split(ref_YCrCb)
     src_y = src_y.astype(np.float32)
     ref_y = ref_y.astype(np.float32)
     # 匹配均值和方差
     src_y = (src_y - src_y.mean()) / (src_y.std() + 1e-5) * (ref_y.std() + 1e-5) + ref_y.mean()
     src_y = np.clip(src_y, 0, 255).astype(np.uint8)
-    norm_yuv = cv2.merge([src_y, src_u, src_v])
-    return cv2.cvtColor(norm_yuv, cv2.COLOR_YUV2RGB)
+    norm_YCrCb = cv2.merge([src_y, src_u, src_v])
+    return cv2.cvtColor(norm_YCrCb, cv2.COLOR_YCrCb2RGB)
 
 def create_gradient_mask(h, w, band_width_ratio=0.15):
     """
@@ -86,7 +86,8 @@ def main():
     # 尺寸匹配
     orange_img = cv2.resize(orange_img, (apple_img.shape[1], apple_img.shape[0]))
     # 融合
-    result, mask = blend_apple_orange(apple_img, orange_img)
+    # result, mask = blend_apple_orange(apple_img, orange_img)
+    result, mask = half_half_blend(apple_img, orange_img, band_width_ratio=0.15)
     # 保存
     save_image(result, output_path, color_mode='rgb')
     print(f"融合完成，结果已保存至: {output_path}")
