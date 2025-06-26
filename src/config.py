@@ -16,10 +16,12 @@ OUTPUT_DIR = os.path.join(DATA_DIR, 'output')
 BEAUTY_IMAGE_PATH = os.path.join(INPUT_DIR, 'beauty.jpg')
 APPLE_IMAGE_PATH = os.path.join(INPUT_DIR, 'apple.jpg')
 ORANGE_IMAGE_PATH = os.path.join(INPUT_DIR, 'orange.jpg')
+SCENERY_IMAGE_PATH = os.path.join(INPUT_DIR, 'scenery.png')
 
 # 输出图像路径
 BEAUTY_OUTPUT_PATH = os.path.join(OUTPUT_DIR, 'beauty_enhanced.jpg')
 FUSION_OUTPUT_PATH = os.path.join(OUTPUT_DIR, 'apple_orange_fusion.jpg')
+ENHANCED_OUTPUT_PATH = os.path.join(OUTPUT_DIR, 'enhanced_scenery.png')
 
 # 美化参数
 BEAUTY_PARAMS = {
