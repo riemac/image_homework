@@ -6,6 +6,8 @@ import os
 import cv2
 import numpy as np
 from PIL import Image
+import matplotlib.pyplot as plt # 导入matplotlib用于Jupyter内联显示
+import sys # 导入sys模块用于检测运行环境
 
 def read_image(image_path, color_mode='rgb'):
     """
@@ -62,19 +64,35 @@ def save_image(image, save_path, color_mode='rgb'):
 
 def display_image(image, title="Image", color_mode='rgb'):
     """
-    使用OpenCV显示图像
+    使用OpenCV或Matplotlib显示图像，根据运行环境自动调整
     
     参数:
         image (numpy.ndarray): 图像数据
         title (str): 窗口标题
         color_mode (str): 颜色模式，可选 'rgb', 'bgr', 'gray'
     """
-    if color_mode.lower() == 'rgb':
-        # 转换为BGR显示
-        display_img = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+    # 检查是否在Jupyter Notebook环境中运行
+    if 'ipykernel' in sys.modules or 'jupyter_client' in sys.modules:
+        # Jupyter环境下使用matplotlib显示
+        plt.figure(figsize=(10, 8))
+        if color_mode.lower() == 'rgb':
+            plt.imshow(image)
+        elif color_mode.lower() == 'bgr':
+            plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
+        elif color_mode.lower() == 'gray':
+            plt.imshow(image, cmap='gray')
+        else:
+            raise ValueError(f"不支持的颜色模式: {color_mode}")
+        plt.title(title)
+        plt.axis('off') # 不显示坐标轴
+        plt.show()
     else:
-        display_img = image
-    
-    cv2.imshow(title, display_img)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
+        # 非Jupyter环境下使用OpenCV显示
+        if color_mode.lower() == 'rgb':
+            display_img = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+        else:
+            display_img = image
+        
+        cv2.imshow(title, display_img)
+        cv2.waitKey(0)
+        cv2.destroyAllWindows()
