@@ -21,3 +21,7 @@
 ![alt text](image.png)
 ## 美女图像美化
 ![alt text](image-1.png)
+## 图像去底纹噪音增强
+![alt text](image-2.png)
+## 车牌标号定位（以第2张为例）
+![alt text](image-3.png)![alt text](image-4.png)
